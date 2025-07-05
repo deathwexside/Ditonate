@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Проекты — Ditonate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-light: #fff;
+      --text-light: #000;
+      --bg-dark: #121212;
+      --text-dark: #eee;
+      --transition-speed: 0.3s;
+      --accent-color: #0077ff;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background-color: var(--bg-light);
+      color: var(--text-light);
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    body.dark {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    nav {
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+
+    nav a {
+      color: inherit;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0 14px;
+      font-size: 1.1rem;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 4px;
+      transition: border-color 0.3s;
+    }
+
+    nav a:hover,
+    nav a[aria-current="page"] {
+      border-color: currentColor;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: 1px solid currentColor;
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(0,0,0,0.05);
+    }
+
+    .dark .theme-toggle:hover {
+      background: rgba(255,255,255,0.05);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid #ccc;
+      padding: 1.25rem;
+      border-radius: 16px;
+      background: #fff;
+      transition: border 0.3s, background 0.3s;
+      height: 100%;
+    }
+
+    .dark .project-card {
+      border: 1px solid #333;
+      background: #1b1b1b;
+    }
+
+    .project-card img.project-image {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .project-card h2 {
+      margin: 0 0 0.5rem;
+      font-size: 1.25rem;
+    }
+
+    .project-card p {
+      font-size: 0.95rem;
+      opacity: 0.85;
+      margin-bottom: 0.75rem;
+      flex-grow: 1;
+    }
+
+    .project-card .tech {
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    .dark .project-card .tech {
+      color: #aaa;
+    }
+
+    .project-card a {
+      display: inline-block;
+      margin-top: 1rem;
+      font-weight: 600;
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+
+    .project-card a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html">Главная</a>
+  <a href="projects.html" aria-current="page">Проекты</a>
+</nav>
+
+<button class="theme-toggle" aria-label="Сменить тему">🌓</button>
+
+<div class="projects-grid">
+  <div class="project-card">
+    <img src="https://i.ibb.co/DDCJyXPc/image.png" alt="Студия озвучки аниме" class="project-image" />
+    <h2>Студия озвучки</h2>
+    <p>HikariStudio — новая студия озвучки аниме, пока малоизвестная.</p>
+    <div class="tech">HTML, CSS, JS</div>
+    <a href="https://hikaristudio.kesug.com/">Смотреть →</a>
+  </div>
+
+  <div class="project-card">
+    <img src="https://i.ibb.co/rGbJ8qGN/image.png" alt="Сайт полезных программ" class="project-image" />
+    <h2>DevSoftWare</h2>
+    <p>Сайт полезных программ.</p>
+    <div class="tech">HTML, CSS</div>
+    <a href="devsoftware.wuaze.com">Смотреть →</a>
+  </div>
+
+  <div class="project-card">
+    <img src="https://i.ibb.co/CK2KFChr/logo.png" alt="DeliceClient" class="project-image" />
+    <h2>DeliceClient</h2>
+    <p>Бесплатный клиент для игры Minecraft.</p>
+    <div class="tech">HTML, CSS, JS</div>
+    <a href="https://deliceclient.wuaze.com/">Смотреть →</a>
+  </div>
+</div>
+
+<script>
+  const btn = document.querySelector('.theme-toggle');
+  const body = document.body;
+
+  if (localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark');
+  }
+
+  btn.addEventListener('click', () => {
+    body.classList.toggle('dark');
+    localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+  });
+</script>
+</body>
+</html>
